@@ -6,22 +6,19 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static java.time.LocalDateTime.now;
-
 @Entity
 @Table(name = "users")
 @Setter
 @Getter
 @NoArgsConstructor
+@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -48,5 +45,7 @@ public class User {
     private void setTimeUpdated(){
         timeUpdated=now();
     }
+    @OneToOne
+    private BookMark bookMark;
 
 }

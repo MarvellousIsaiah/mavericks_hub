@@ -1,7 +1,9 @@
 package com.maverickstube.maverickshub.services;
 
 
+import com.maverickstube.maverickshub.dtos.requests.AddMediaToBookMarkRequest;
 import com.maverickstube.maverickshub.dtos.requests.CreateUserRequest;
+import com.maverickstube.maverickshub.dtos.responses.AddMediaToBookMarkResponse;
 import com.maverickstube.maverickshub.dtos.responses.CreateUserResponse;
 import com.maverickstube.maverickshub.exceptions.UserNotFoundException;
 import com.maverickstube.maverickshub.models.User;
@@ -20,6 +22,9 @@ public class UserServiceTest {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BookMarkService bookMarkService;
 
     @Test
     public void registerTest(){
@@ -40,5 +45,7 @@ public class UserServiceTest {
         User user = userService.getById(200L);
         assertThat(user).isNotNull();
     }
+
+
 
 }
