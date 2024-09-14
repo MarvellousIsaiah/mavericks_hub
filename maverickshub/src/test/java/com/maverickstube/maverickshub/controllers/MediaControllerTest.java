@@ -55,11 +55,10 @@ public class MediaControllerTest {
     @Test
     public void testGetMediaForUser(){
         try {
-            mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/media?userId=200")
+            mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/media/get-all-media?userId=200")
                             .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().is2xxSuccessful())
                     .andDo(print());
-
         }catch (Exception exception){
             assertThat(exception).isNull();
         }
@@ -69,11 +68,16 @@ public class MediaControllerTest {
 
     @Test
     public void testGetMediaForUserShouldFailForInvalidUserId() throws Exception {
-            mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/media?userId=20000")
+            mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/media/get-all-media?userId=2000000")
                             .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isBadRequest())
                     .andDo(print());
 
+
+    }
+
+    @Test
+    public void testThatAuthenticationFailsForIncorrectCredentials(){
 
     }
 }

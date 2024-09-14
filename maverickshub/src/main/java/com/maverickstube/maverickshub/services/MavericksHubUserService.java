@@ -50,4 +50,9 @@ public class MavericksHubUserService implements UserService{
                                 String.format("user with id %d not found", id)));
     }
 
+    @Override
+    public User getUserByUsername(String username) {
+          return userRepository.findUsersByEmailIgnoreCase(username);
+    }
+
 }

@@ -10,6 +10,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static java.time.LocalDateTime.now;
@@ -34,16 +35,16 @@ public class User {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime timeUpdated;
-
-
+     @CollectionTable
+     private Set<Authority> authority;
     @PrePersist
     private void setTimeCreated(){
-        timeCreated=now();
+        timeCreated = now();
     }
 
     @PreUpdate
     private void setTimeUpdated(){
-        timeUpdated=now();
+        timeUpdated = now();
     }
     @OneToOne
     private BookMark bookMark;
